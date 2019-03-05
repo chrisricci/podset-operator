@@ -84,7 +84,7 @@ type ReconcilePodSet struct {
 // Result.Requeue is true, otherwise upon completion it will remove the work from the queue.
 func (r *ReconcilePodSet) Reconcile(request reconcile.Request) (reconcile.Result, error) {
 	reqLogger := log.WithValues("Request.Namespace", request.Namespace, "Request.Name", request.Name)
-	reqLogger.Info("========Reconciling PodSet")
+	reqLogger.Info("Reconciling PodSet")
 
 	// Fetch the PodSet instance
 	podSet := &appv1alpha1.PodSet{}
@@ -94,7 +94,7 @@ func (r *ReconcilePodSet) Reconcile(request reconcile.Request) (reconcile.Result
 			// Request object not found, could have been deleted after reconcile request.
 			// Owned objects are automatically garbage collected. For additional cleanup logic use finalizers.
 			// Return and don't requeue
-			reqLogger.Info("=====Pod Deleted")
+			reqLogger.Info("Pod Deleted")
 			return reconcile.Result{}, nil
 		}
 		// Error reading the object - requeue the request.
